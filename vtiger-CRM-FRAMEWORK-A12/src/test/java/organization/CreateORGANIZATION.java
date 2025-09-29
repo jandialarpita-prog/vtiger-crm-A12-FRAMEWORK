@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateOrganization {
+public class CreateORGANIZATION {
 public static void main(String[] args) throws InterruptedException {
 		
 		//OPEN BROWSER
@@ -18,7 +18,7 @@ public static void main(String[] args) throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		
 		//LOGIN
-		driver.get("http://localhost:8888/index.php?action=index&module=Home");
+		driver.get("http://localhost:8888/");
 		
 		WebElement username = driver.findElement(By.name("user_name"));
 		username.sendKeys("admin");

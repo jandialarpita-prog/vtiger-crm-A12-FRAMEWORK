@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class GetDataFromPropertiesFile {
+public class GetDataFromPropertiesFILE {
 
 	public static void main(String[] args) throws IOException {
 		// 1. Get the Java Representation object of the Physical file

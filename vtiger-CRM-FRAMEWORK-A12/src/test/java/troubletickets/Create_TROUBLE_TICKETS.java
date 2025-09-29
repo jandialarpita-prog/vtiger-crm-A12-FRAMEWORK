@@ -1,6 +1,7 @@
 package troubletickets;
 
 import java.time.Duration;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateTroubleTickets {
+public class Create_TROUBLE_TICKETS {
 	public static void main(String[] args) throws InterruptedException {
 		// OPEN BROWSER
 		WebDriver driver = new ChromeDriver();
@@ -17,7 +18,7 @@ public class CreateTroubleTickets {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 		// LOGIN
-		driver.get("http://localhost:8888/index.php?action=index&module=Home");
+		driver.get("http://localhost:8888");
 
 		WebElement username = driver.findElement(By.name("user_name"));
 		username.sendKeys("admin");
@@ -46,14 +47,14 @@ public class CreateTroubleTickets {
 		Select parent_type = new Select(dropDown);
 		parent_type.selectByValue("Accounts");
 		
-		/*
+		
 		//USING WINDOW HANDLE FIRST TIME
 		
 		//STEP 1:GET THE HOME ADDRESS/PARENT ID
 		String PID = driver.getWindowHandle();
 		
 		//STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
-		driver.findElement(By.partialLinkText(" document.EditView.parent_type.value +&quot")).click();
+		driver.findElement(By.xpath("//tr[3]//img[@alt='Select']")).click();
 		
 		//STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
 		Set<String> IDS = driver.getWindowHandles();
@@ -84,7 +85,7 @@ public class CreateTroubleTickets {
 				String PID2 = driver.getWindowHandle();
 				
 				//STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
-				driver.findElement(By.cssSelector("img[alt='Select']")).click();
+				driver.findElement(By.xpath("//tr[4]//img[@alt='Select']")).click();
 				
 				//STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
 				Set<String> IDS2= driver.getWindowHandles();
@@ -108,7 +109,7 @@ public class CreateTroubleTickets {
 				driver.switchTo().window(PID2);
 				Thread.sleep(3000);
 			
-		*/
+		
 		
 		WebElement dropDown1 = driver.findElement(By.name("ticketpriorities"));
 		Select ticketpriorities = new Select(dropDown1);
