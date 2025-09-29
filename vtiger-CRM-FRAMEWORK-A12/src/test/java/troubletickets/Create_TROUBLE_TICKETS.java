@@ -46,26 +46,25 @@ public class Create_TROUBLE_TICKETS {
 		WebElement dropDown = driver.findElement(By.name("parent_type"));
 		Select parent_type = new Select(dropDown);
 		parent_type.selectByValue("Accounts");
-		
-		
-		//USING WINDOW HANDLE FIRST TIME
-		
-		//STEP 1:GET THE HOME ADDRESS/PARENT ID
+
+		// USING WINDOW HANDLE FIRST TIME
+
+		// STEP 1:GET THE HOME ADDRESS/PARENT ID
 		String PID = driver.getWindowHandle();
-		
-		//STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
+
+		// STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
 		driver.findElement(By.xpath("//tr[3]//img[@alt='Select']")).click();
-		
-		//STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
+
+		// STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
 		Set<String> IDS = driver.getWindowHandles();
-		
-		//STEP 4 :SWITCH TO PARTICULAR WINDOW
-		for(String i : IDS) {
+
+		// STEP 4 :SWITCH TO PARTICULAR WINDOW
+		for (String i : IDS) {
 			driver.switchTo().window(i);
-			
-		//STEP 5 :PERFORM THE TASK
-			if(driver.getCurrentUrl().contains("Popup_picker")) {
-				WebElement choose= driver.findElement(By.linkText("automationwitharpita"));
+
+			// STEP 5 :PERFORM THE TASK
+			if (driver.getCurrentUrl().contains("Popup_picker")) {
+				WebElement choose = driver.findElement(By.linkText("automationwitharpita"));
 				Actions act = new Actions(driver);
 				act.moveToElement(choose).click().build().perform();
 				Thread.sleep(1000);
@@ -74,42 +73,43 @@ public class Create_TROUBLE_TICKETS {
 			}
 		}
 
-		//STEP 6 :COME BACK TO HOME/PARENT PAGE
+		// STEP 6 :COME BACK TO HOME/PARENT PAGE
 		driver.switchTo().window(PID);
-		Thread.sleep(3000);
-	
+		Thread.sleep(1000);
 		
-		//USING WINDOW HANDLE SECOND TIME
-		
-				//STEP 1:GET THE HOME ADDRESS/PARENT ID
-				String PID2 = driver.getWindowHandle();
-				
-				//STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
-				driver.findElement(By.xpath("//tr[4]//img[@alt='Select']")).click();
-				
-				//STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
-				Set<String> IDS2= driver.getWindowHandles();
-				
-				//STEP 4 :SWITCH TO PARTICULAR WINDOW
-				for(String j : IDS2) {
-					driver.switchTo().window(j);
-					
-				//STEP 5 :PERFORM THE TASK
-					if(driver.getCurrentUrl().contains("Popup_picker")) {
-						WebElement choose2= driver.findElement(By.linkText("abcd1234"));
-						Actions act = new Actions(driver);
-						act.moveToElement(choose2).click().build().perform();
-						Thread.sleep(1000);
-						driver.close();
-						break;
-					}
-				}
+		/*
+		WebElement productName = driver.findElement(By.name("product_name"));
 
-				//STEP 6 :COME BACK TO HOME/PARENT PAGE
-				driver.switchTo().window(PID2);
-				Thread.sleep(3000);
-			
-		
+		// USING WINDOW HANDLE SECOND TIME
+
+		// STEP 1:GET THE HOME ADDRESS/PARENT ID
+		String PID2 = driver.getWindowHandle();
+
+		// STEP 2 :PERFORM THE TASK WHICH WILL OPEN NEW WINDOW
+		driver.findElement(By.xpath("//tr[4]//img[@alt='Select']")).click();
+
+		// STEP 3 :GET ALL THE WINDOWS ID/CJILDERN IDS
+		Set<String> IDS2 = driver.getWindowHandles();
+
+		// STEP 4 :SWITCH TO PARTICULAR WINDOW
+		for (String j : IDS2) {
+			driver.switchTo().window(j);
+
+			// STEP 5 :PERFORM THE TASK
+			if (driver.getCurrentUrl().contains("Popup_picker")) {
+				WebElement choose2 = driver.findElement(By.linkText("abcd1234"));
+				Actions act = new Actions(driver);
+				act.moveToElement(choose2).click().build().perform();
+				Thread.sleep(1000);
+				driver.close();
+				break;
+			}
+		}
+
+		// STEP 6 :COME BACK TO HOME/PARENT PAGE
+		driver.switchTo().window(PID2);
+		Thread.sleep(3000);
+        */
 		
 		WebElement dropDown1 = driver.findElement(By.name("ticketpriorities"));
 		Select ticketpriorities = new Select(dropDown1);
