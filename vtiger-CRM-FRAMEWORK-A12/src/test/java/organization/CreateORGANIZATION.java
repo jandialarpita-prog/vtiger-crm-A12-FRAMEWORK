@@ -3,6 +3,7 @@ package organization;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,19 +21,40 @@ import org.openqa.selenium.support.ui.Select;
 public class CreateORGANIZATION {
 	public static void main(String[] args) throws InterruptedException, EncryptedDocumentException, IOException {
 
+		// Get the data from Properties file
+
+		FileInputStream fis = new FileInputStream("./src/test/resources/CommonData.properties");
+		Properties pObj = new Properties();
+		pObj.load(fis);
+		String BROWSER = pObj.getProperty("bro");
+		String URL = pObj.getProperty("url");
+		String USERNAME = pObj.getProperty("un");
+		String PASSWORD = pObj.getProperty("pwd");
+
+		// Get the data from excel file
+
+		// FileInputStream fisexcel = new
+		// FileInputStream("./src/test/resources/testScriptData.xlsx");
+
+		// Workbook wb = WorkbookFactory.create(fisexcel);
+
+		// Sheet sh = wb.getSheet("org");
+
+		// Row row = sh.getRow(6);
+
+		// Cell cell = row.getCell(0);
+
+		// String orgName = cell.getStringCellValue() + (int) (Math.random() * 10000);
+
 		// Get the data from excel file
 
 		FileInputStream fisexcel = new FileInputStream("./src/test/resources/testScriptData.xlsx");
-
 		Workbook wb = WorkbookFactory.create(fisexcel);
-
-		Sheet sh = wb.getSheet("org");
-
-		Row row = sh.getRow(6);
-
+		Sheet sh = wb.getSheet("Name");
+		Row row = sh.getRow(11);
 		Cell cell = row.getCell(0);
-
-		String orgName = cell.getStringCellValue() + (int) (Math.random() * 10000);
+		String orgName = cell.getStringCellValue();
+		wb.close();
 
 		// OPEN BROWSER
 		WebDriver driver = new ChromeDriver();
@@ -40,13 +62,22 @@ public class CreateORGANIZATION {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 		// LOGIN
-		driver.get("http://localhost:8888/");
+		/*
+		 * driver.get("http://localhost:8888/");
+		 * 
+		 * WebElement username = driver.findElement(By.name("user_name"));
+		 * username.sendKeys("admin");
+		 * 
+		 * WebElement password = driver.findElement(By.name("user_password"));
+		 * password.sendKeys("manager");
+		 */
+		driver.get(URL);
 
 		WebElement username = driver.findElement(By.name("user_name"));
-		username.sendKeys("admin");
+		username.sendKeys(USERNAME);
 
 		WebElement password = driver.findElement(By.name("user_password"));
-		password.sendKeys("manager");
+		password.sendKeys(PASSWORD);
 
 		driver.findElement(By.id("submitButton")).click();
 		Thread.sleep(2000);
@@ -109,6 +140,9 @@ public class CreateORGANIZATION {
 
 		// SAVE
 		driver.findElement(By.cssSelector("input[title='Save [Alt+S]']")).click();
+
+		// Alert
+		// driver.switchTo().alert().accept();
 
 		// VERIFICATION
 		String actOrgName = driver.findElement(By.id("dtlview_Organization Name")).getText();
